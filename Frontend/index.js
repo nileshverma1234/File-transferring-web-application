@@ -1,7 +1,7 @@
 const dropZone = document.querySelector(".drop-zone");
 const browseBtn = document.querySelector(".browseBtn");
 const fileInput = document.querySelector("#fileInput");
-
+const PORT = 5000
 const host = "http://localhost:3000/";
 const uploadURL = "http://localhost:3000/api/files"
 // const uploadURL = `${host}api/files`;
@@ -37,11 +37,11 @@ browseBtn.addEventListener("click", ()=>{
   fileInput.click();
 });
 
-const uploadFile= ()=>{
+const uploadFile = ()=>{
   const file = fileInput.files[0];
   const formData = new FormData();
   formData.append("myfile",file);
-
+  
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () =>{
     if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -52,3 +52,5 @@ const uploadFile= ()=>{
   xhr.open("POST", uploadURL);
   xhr.send(formData);
 };
+
+app.listen(PORT, console.log(`Listening on port ${PORT}.`));
