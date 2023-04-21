@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 
 
 router.post('/send', async (req, res) => {
-    // console.log(req.body); //for checking the api
+    console.log(req.body); //for checking the api
     // return res.send({});
     const { uuid, emailTo, emailFrom } = req.body;
     if(!uuid || !emailTo || !emailFrom) {
@@ -71,9 +71,11 @@ router.post('/send', async (req, res) => {
         }).then(() => {
         return res.json({success: true});
         }).catch(err => {
-        return res.status(500).json({error: 'Error in email sending.'});
+            // console.log(err);
+            return res.status(500).json({error: 'Error in email sending.'});
         });
 } catch(err) {
+    // console.log(err);
     return res.status(500).send({ error: 'Something went wrong.'});
 }
 

@@ -12,7 +12,7 @@ module.exports = async ({ from, to, subject, text, html}) => {
 
         
     let info = await transporter.sendMail({
-        from: `inShare <${from}>`, 
+        from: `File Transfer  <${from}>`, 
         to: to, 
         subject: subject, 
         text: text, 
