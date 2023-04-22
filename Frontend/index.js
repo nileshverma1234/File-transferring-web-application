@@ -14,7 +14,7 @@ const copyBtn = document.querySelector("#copyBtn");
 const emailForm = document.querySelector("#emailForm");
 const toast =document.querySelector(".toast")
 
-const host = "http://localhost:3000/";
+const host = "http://43.205.51.183:3000/";
 const uploadURL = `${host}api/files`;
 const emailURL = `${host}api/files/send`;
 
@@ -53,8 +53,8 @@ browseBtn.addEventListener("click", ()=>{
 
 copyBtn.addEventListener("click", ()=>{
   fileURLInput.select();
-  // window.getSelection("copy");
-  // document.execCommand('copy');
+  window.getSelection("copy");
+  document.execCommand("copy");
   showToast("Link Copied");
 });
 
@@ -87,10 +87,12 @@ const uploadFile = ()=>{
   };
 
   xhr.upload.onprogress = updateProgress;
+
   xhr.upload.onerror= ()=>{
     resetFileInput();
     showToast(`Error in Upload : ${xhr.statusText}`);
-  }
+  };
+
 
   xhr.open("POST", uploadURL);
   xhr.send(formData);
@@ -101,7 +103,7 @@ const updateProgress = (e)=>{
   console.log(e);
   bgProgress.style.width= `${percent}%`;
   percentDiv.innerText = percent;
-  progressBar.style.transform= `scaleX(${percent/100})`
+  progressBar.style.transform= `scaleX(${percent/100})`;
 };
 
 const onUploadSucess= ({file : url})=>{

@@ -144,7 +144,7 @@ body{
 .sharing-container{
     width: var(--container-width);
     margin-bottom: 20px;
-    /* display: none; */
+    display: none;
 }
 
 p{
